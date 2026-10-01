@@ -209,7 +209,7 @@
       ['h', "TẤM CÁM'S BIZARRE ADVENTURE"], ['s', 'RICEDUST CRUSADERS'], ['gap'],
       ...(M.AUTHOR ? [['t', T('A game by', 'Một trò chơi của')], ['n', M.AUTHOR], ['gap']] : []),
       ['t', T('Based on the Vietnamese folk tale', 'Dựa trên truyện cổ tích Việt Nam')], ['n', 'Tấm Cám'], ['gap'],
-      ['t', T('With love to', 'Thân tặng')], ['n', 'Slay the Princess — Black Tabby Games'], ['n', "JoJo's Bizarre Adventure — Hirohiko Araki"], ['gap'],
+      ['t', T('With love to', 'Lấy cảm hứng từ')], ['n', 'Slay the Princess — Black Tabby Games'], ['n', "JoJo's Bizarre Adventure — Hirohiko Araki"], ['gap'],
       ['t', T('Art, music & sound', 'Hình ảnh, âm nhạc & âm thanh')], ['n', T('100% procedurally generated in the browser', '100% tạo bằng code ngay trên trình duyệt')], ['gap'],
       ['t', T('Instruments (synthesized)', 'Nhạc cụ (tổng hợp)')], ['n', 'đàn tranh · đàn bầu · sáo · trống · mõ · phách · chiêng'], ['gap'],
       ['t', T('Fonts (SIL Open Font License)', 'Phông chữ (SIL OFL)')], ['n', 'Dela Gothic One · Bangers · Patrick Hand · Lora'], ['gap'],

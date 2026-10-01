@@ -42,7 +42,7 @@
       L('Remember when she piggybacked you across the stream? No? I do. That\'s kind of my whole job.', 'Còn nhớ hồi nhỏ chị ấy cõng cậu qua suối không? Không à? Mình nhớ. Nhiệm vụ của mình là nhớ đấy.'),
     ],
     coward: [
-      L('Hi! New voice! Quick question: can we leave? The palace. The country. The genre.', 'Chào! Tiếng lòng mới nè! Hỏi nhanh: mình về được chưa? Về khỏi cung. Khỏi nước. Khỏi cái thể loại truyện này.'),
+      L('Hi! New voice! Quick question: can we leave? The palace. The country. The genre.', 'Chào! Tiếng lòng mới nè! Hỏi nhanh: mình về được chưa? Về khỏi cung. Khỏi quán nước. Khỏi cái thể loại truyện này.'),
       L('I\'m the part of you that turned around on that path. I\'d love to keep turning.', 'Tui là phần trong bà đã quay đầu trên con đường đó. Tui muốn quay đầu tiếp.'),
     ],
     hungry: [
@@ -201,7 +201,7 @@
     await N(L('Yes. That is Tấm. She\'s a bird now. This is normal. It\'s in the text.', 'Phải. Đó là Tấm. Giờ cô ta là chym. Chuyện bình thường. Sách có ghi.'));
     await say('bird', L('Tweet. Also, you\'re using way too much soap.', 'Chíp. Với lại em dùng nhiều bồ kết quá đấy.'), { tail: 1330 });
     await chorus({
-      menacing: L('A BIRD is taunting us. Stand up. Strike a pose. Show her who the protagonist is.', 'Một CON CHIM đang khiêu khích chúng ta. Đứng dậy. Tạo dáng. Cho nó biết ai mới là nhân vật chính.'),
+      menacing: L('A BIRD is taunting us. Stand up. Strike a pose. Show her who the protagonist is.', 'Một CON CHIM đang khiêu khích chúng ta. Đứng dậy. Lên đồ. Cho nó biết ai mới là nhân vật chính.'),
       sister: L('She sounds… okay? Healthy, for a bird. I\'m glad.', 'Nghe giọng chị ấy… ổn nhỉ? Khỏe re, so với một con chim. Mừng ghê.'),
       coward: L('Haunted bird. Cool. Love that for us. Can we go inside?', 'Chim ma. Tuyệt. Hay quá ha. Mình vô nhà được chưa?'),
     });
@@ -358,7 +358,7 @@
       await say('oldwoman', L('Oh! Such a good fruit! And such a good girl — here, have some tea.', 'Ôi! Quả thị ngoan quá! Cháu cũng ngoan — nào, uống chén nước chè.'), { tail: 520 });
       await N(L('She pats your head. Nobody has patted your head in ten thousand tellings.', 'Bà xoa đầu cô. Mười nghìn lần kể chuyện, chưa ai xoa đầu cô cả.'));
     } else if (c === 'snatch') {
-      await N(L('You dive for the fruit. So does she. Time slows down—', 'Cô lao tới chộp quả thị. Bà lão cũng lao tới. Thời gian như chậm lại—'));
+      await N(L('You dive for the fruit. So does she. Time slows down—', 'Cô lao tới chộp quả thị. Bà lão cũng lao tới. Nhưng thời gian như chậm lại—'));
       await say('oldwoman', L('ZA WARUDO! Time, stop!', 'ZA WARUDO! Thời gian, ngừng lại!'), { style: 'shout', tail: 520 });
       await MG().oldWomanTimeStop();
       await say('oldwoman', L('…And time resumes.', '…Và thời gian tiếp tục trôi.'), { tail: 520 });
@@ -491,7 +491,7 @@
     await say('tam', L('…Wait. That\'s allowed?', '…Khoan. Được phép vậy hả?'), { tail: 700 });
     await MG().runAway('tam');
     await N(L('Come back! Both of you! There\'s a WEDDING scene! There\'s FISH SAUCE!', 'Quay lại! Cả hai! Còn cảnh ĐÁM CƯỚI! Còn vụ LÀM MẮM nữa!'));
-    await N(L('…And they ran, and ran. And the story, having no one left to tell, sat down on the palace steps and had a little cry.', '…Và họ chạy mãi, chạy mãi. Còn người kể chuyện, chẳng còn gì để kể, ngồi bệt xuống bậc thềm và khóc thút thít.'));
+    await N(L('…And they ran, and ran. And the story, having no one left to tell, sat down on the palace steps and had a little cry.', '…Và họ chạy mãi, chạy mãi. Chẳng còn chuyện gì để kể, ngồi bệt xuống bậc thềm và khóc thút thít.'));
     await MG().butAppear(1180, 200);
     await say('but', L('Why are you crying, my child?', 'Làm sao con khóc?'), { tail: 1420 });
     await N(L('…Oh, NOW you show up.', '…Ồ, GIỜ ông mới chịu hiện ra.'));

@@ -507,8 +507,11 @@
     $('overlay').appendChild(d);
     d.animate([{ opacity: 0, transform: 'scale(1.1)' }, { opacity: 1, transform: 'scale(1)' }], { duration: TC.fastForward() ? 1 : 300, fill: 'forwards', easing: 'cubic-bezier(.2,.9,.3,1)' });
     FX.shake(12, 300);
-    // click to continue, or it moves on by itself (so AUTO mode never stalls here)
-    await Promise.race([TC.input.waitAdvance(), TC.wait(5200)]).catch((e) => { d.remove(); throw e; });
+    // stays up until the player advances; only SKIP / Ctrl moves it on without a click
+    let over = false;
+    const skipping = (async () => { while (!over && !TC.fastForward()) await new Promise((r) => setTimeout(r, 100)); })();
+    await Promise.race([TC.input.waitAdvance(), skipping]).catch((e) => { d.remove(); throw e; });
+    over = true;
     await d.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 250, fill: 'forwards' }).finished;
     d.remove();
   };
