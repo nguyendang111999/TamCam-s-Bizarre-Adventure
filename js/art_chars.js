@@ -64,8 +64,8 @@
     const torso = sm([[300, 266], [222, 304], [154, 352], [128, 396], [150, 476], [190, 562], [228, 640], [360, 612], [484, 560], [488, 460], [494, 350], [486, 266], [440, 240], [380, 254]]);
     const armL = sm([[162, 354], [118, 404], [84, 476], [58, 566], [56, 626], [70, 684], [122, 686], [118, 626], [126, 566], [152, 486], [190, 424]]);
     const armR = sm([[468, 252], [514, 272], [542, 330], [568, 420], [602, 490], [644, 552], [614, 578], [572, 524], [534, 452], [504, 380], [478, 322]]);
-    const legNear = sm([[238, 650], [444, 690], [438, 800], [424, 900], [420, 1000], [428, 1120], [442, 1250], [198, 1250], [212, 1120], [234, 1000], [260, 900], [246, 780]]);
-    const legFar = sm([[420, 690], [524, 636], [606, 688], [690, 752], [728, 806], [770, 880], [826, 944], [796, 972], [748, 956], [700, 902], [656, 852], [616, 828], [540, 800], [466, 764]]);
+    // hips and both legs are ONE inked silhouette, so each leg grows out of the hips with no seam
+    const pants = sm([[226, 586], [232, 680], [246, 780], [236, 900], [226, 1000], [212, 1120], [198, 1252], [442, 1252], [430, 1120], [420, 1000], [424, 900], [436, 806], [540, 808], [618, 834], [660, 862], [702, 908], [748, 958], [796, 976], [826, 946], [772, 880], [730, 808], [692, 752], [608, 688], [528, 636], [498, 568], [360, 556]]);
     const flap = sm([[226, 628], [360, 604], [480, 552], [452, 650], [380, 740], [290, 818], [196, 860], [150, 836], [192, 740]]);
     const head = sm([[290, 150], [318, 110], [376, 94], [434, 112], [462, 158], [466, 216], [444, 262], [396, 282], [340, 278], [300, 248], [284, 200]]);
     const tail = sm([[330, 270], [410, 270], [440, 330], [436, 400], [408, 460], [374, 500], [346, 460], [320, 400], [316, 330]]);
@@ -74,9 +74,9 @@
     const handR = sm([[608, 562], [654, 548], [686, 584], [682, 628], [650, 642], [620, 614]]);
     const hai = sm([[772, 948], [832, 934], [894, 944], [932, 966], [912, 990], [842, 998], [774, 990]]);
     const LEAN = 'rotate(7 360 640)';
-    const sil = [legNear, legFar, flap, hai].map((d) => `<path d="${d}"/>`).join('') + `<g transform="${LEAN}">` + [torso, armL, armR, tail, head, bun, handL, handR].map((d) => `<path d="${d}"/>`).join('') + `</g>`;
+    const sil = [pants, flap, hai].map((d) => `<path d="${d}"/>`).join('') + `<g transform="${LEAN}">` + [torso, armL, armR, tail, head, bun, handL, handR].map((d) => `<path d="${d}"/>`).join('') + `</g>`;
     const rnd = U.rng(314);
-    let s = `<defs>${clip('tb-torso', torso)}${clip('tb-flap', flap)}${clip('tb-ln', legNear)}${clip('tb-lf', legFar)}${clip('tb-al', armL)}${clip('tb-ar', armR)}
+    let s = `<defs>${clip('tb-torso', torso)}${clip('tb-flap', flap)}${clip('tb-pants', pants)}${clip('tb-al', armL)}${clip('tb-ar', armR)}
       <linearGradient id="tb-gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe98a"/><stop offset=".45" stop-color="#f7c325"/><stop offset="1" stop-color="#c98a0e"/></linearGradient>
       <linearGradient id="tb-silk" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff0b0"/><stop offset=".5" stop-color="#f2c94c"/><stop offset="1" stop-color="#b07c18"/></linearGradient></defs>`;
 
@@ -98,21 +98,22 @@
     s += `<g fill="#bff8ff" stroke="#bff8ff" stroke-width="32" stroke-linejoin="round">${sil}</g>`;
     s += `<g fill="${INK}" stroke="${INK}" stroke-width="14" stroke-linejoin="round" transform="translate(6 7)">${sil}</g>`;
 
-    // ---------------------------------------------------------------- far leg (stepping toward Cám) + the hài
-    s += inked(legFar, 'url(#tb-silk)', 7);
-    s += `<g clip-path="url(#tb-lf)"><path d="${sm([[480, 740], [600, 680], [700, 790], [830, 950], [760, 980], [660, 890], [560, 820]])}" fill="${INK}" opacity=".5"/>`;
-    s += K.hatch({ x: 480, y: 640, w: 360, h: 340 }, { angle: 55, gap: 12, w: 2.6, seed: 6, color: INK, op: 0.45, fade: [0.2, 0.5] }) + `</g>`;
-    s += line([[480, 730], [590, 800], [700, 880]], 4, { s: 0.2, e: 0.5 }) + line([[560, 690], [660, 770]], 3.4, { fill: '#fff6d0', op: 0.8 });
+    // ---------------------------------------------------------------- hips and legs (wide silk trousers): near leg planted, far leg stepping toward Cám
+    s += inked(pants, 'url(#tb-silk)', 8, [6, 7]);
+    s += `<g clip-path="url(#tb-pants)">`;
+    s += `<path d="${sm([[230, 590], [500, 560], [520, 640], [430, 690], [310, 700], [236, 664]])}" fill="${INK}" opacity=".32"/>`;
+    s += `<path d="${sm([[440, 790], [500, 700], [560, 650], [630, 696], [730, 806], [850, 950], [790, 996], [700, 920], [620, 862], [530, 826]])}" fill="${INK}" opacity=".5"/>`;
+    s += K.hatch({ x: 480, y: 640, w: 360, h: 340 }, { angle: 55, gap: 12, w: 2.6, seed: 6, color: INK, op: 0.45, fade: [0.2, 0.5] });
+    s += `<path d="${sm([[380, 680], [450, 700], [430, 900], [430, 1100], [450, 1260], [340, 1260], [336, 1100], [350, 900], [340, 760]])}" fill="${INK}" opacity=".55"/>`;
+    s += K.hatch({ x: 300, y: 720, w: 140, h: 540 }, { angle: 80, gap: 13, w: 3, seed: 8, color: INK, op: 0.5, fade: [0.15, 0.45] }) + `</g>`;
+    // the near leg passes in front of the far thigh: its inner contour runs up from the crotch under the flap
+    s += line([[414, 664], [428, 736], [438, 806]], 6, { s: 0.5, e: 0.08 });
+    [[[270, 760], [262, 920], [250, 1100], [240, 1240]], [[320, 800], [306, 1000], [300, 1240]]].forEach((p) => (s += line(p, 6, { s: 0.15, e: 0.6 })));
+    s += line([[236, 860], [226, 1020], [222, 1180]], 4, { fill: '#fff6d0', op: 0.85 });
+    s += line([[490, 760], [590, 806], [700, 880]], 4, { s: 0.2, e: 0.5 }) + line([[560, 690], [660, 770]], 3.4, { fill: '#fff6d0', op: 0.8 });
     s += inked(hai, '#d62828', 6);
     s += `<path d="${sm([[792, 968], [856, 960], [916, 972]], false)}" fill="none" stroke="#ffcf5a" stroke-width="5"/>`;
     s += `<path d="M830 950 q8 -10 16 0 q8 -10 16 0" fill="none" stroke="#ffcf5a" stroke-width="4"/>` + `<circle cx="926" cy="970" r="7" fill="#ffcf5a" stroke="${INK}" stroke-width="3"/>`;
-
-    // ---------------------------------------------------------------- near leg (planted, foreshortened, wide silk trousers)
-    s += inked(legNear, 'url(#tb-silk)', 8, [6, 7]);
-    s += `<g clip-path="url(#tb-ln)"><path d="${sm([[380, 680], [450, 700], [430, 900], [430, 1100], [450, 1260], [340, 1260], [336, 1100], [350, 900], [340, 760]])}" fill="${INK}" opacity=".55"/>`;
-    s += K.hatch({ x: 300, y: 720, w: 140, h: 540 }, { angle: 80, gap: 13, w: 3, seed: 8, color: INK, op: 0.5, fade: [0.15, 0.45] }) + `</g>`;
-    [[[270, 760], [262, 920], [250, 1100], [240, 1240]], [[320, 800], [306, 1000], [300, 1240]]].forEach((p) => (s += line(p, 6, { s: 0.15, e: 0.6 })));
-    s += line([[236, 860], [226, 1020], [222, 1180]], 4, { fill: '#fff6d0', op: 0.85 });
 
     // ---------------------------------------------------------------- áo: back flap swinging left, then the body
     s += inked(flap, 'url(#tb-gold)', 7);
@@ -202,7 +203,7 @@
     const body = run ? 'rotate(-12 260 560)' : 'rotate(-9 260 560)';
 
     // axe slung across the back: head over the far shoulder, blade turned away from her neck
-    s += `<g transform="${body}">` + ART.axe({ x: 372, y: 196, rot: 30, scale: 0.42, dir: 1, len: 1180, haftW: 26, id: `cwax${run ? 'r' : ''}` }) + `</g>`;
+    s += `<g transform="${body}">` + ART.axe({ x: 372, y: 196, rot: 30, scale: 0.42, dir: 1, len: run ? 1180 : 900, haftW: 26, id: `cwax${run ? 'r' : ''}` }) + `</g>`;
 
     // coat tails streaming back (behind the legs), lining showing
     const tails = run
@@ -231,7 +232,7 @@
     // far arm: barely visible behind the torso
     s += run
       ? inked(sm([[290, 320], [360, 360], [420, 380], [460, 360], [470, 392], [420, 420], [350, 410], [290, 380]]), COAT_SH, 5) + inked(sm([[452, 350], [490, 344], [500, 380], [470, 398]]), SKIN, 4)
-      : inked(sm([[300, 330], [334, 420], [340, 520], [316, 560], [292, 520], [296, 420]]), COAT_SH, 5);
+      : inked(sm([[292, 318], [330, 360], [356, 420], [362, 470], [340, 512], [306, 548], [286, 520], [318, 470], [322, 420], [296, 372]]), COAT_SH, 5);
     // torso: open coat, lavender áo underneath, high collar
     const torso = sm([[196, 290], [168, 340], [150, 420], [160, 500], [184, 560], [320, 560], [330, 460], [324, 360], [300, 300], [246, 278]]);
     s += inked(torso, CG, 7);
@@ -243,17 +244,20 @@
     s += inked(sm([[170, 540], [330, 534], [334, 570], [172, 580]]), '#6b1c3c', 5);
     // collar + the coin chain (tiền đồng) hanging from it, Jotaro-style
     s += inked(sm([[190, 276], [252, 266], [266, 310], [196, 318]]), COAT_SH, 5);
-    // near arm: hangs loose in front of the coat (walk) / pumps forward (run)
+    // near arm: hand jammed in her pocket, elbow out (walk) / pumps forward (run)
     if (run) {
       s += inked(sm([[196, 312], [150, 340], [104, 360], [70, 330], [60, 300], [90, 290], [124, 316], [170, 300]]), CG, 6);
       s += inked(sm([[40, 268], [84, 262], [96, 300], [66, 318], [38, 302]]), SKIN, 5);
       s += line([[50, 284], [84, 280]], 2.6) + line([[48, 296], [80, 296]], 2.6);
     } else {
-      s += inked(sm([[194, 310], [160, 360], [140, 440], [134, 520], [140, 580], [178, 584], [178, 520], [186, 440], [214, 360]]), CG, 6);
-      s += `<path d="${sm([[196, 330], [214, 360], [190, 440], [180, 520], [178, 580], [162, 580], [168, 460]])}" fill="${COAT_SH}" opacity=".5"/>`;
-      s += `<path d="M136 556 Q158 566 180 558" fill="none" stroke="#d4a017" stroke-width="7"/>`;
-      s += inked(sm([[136, 574], [180, 576], [190, 612], [174, 648], [146, 650], [130, 616]]), SKIN, 5);
-      s += line([[148, 616], [146, 646]], 2.6) + line([[160, 618], [160, 648]], 2.6) + line([[172, 614], [176, 640]], 2.6);
+      s += inked(sm([[198, 304], [168, 344], [146, 400], [138, 452], [152, 500], [180, 548], [206, 590], [234, 580], [214, 540], [188, 494], [178, 450], [186, 400], [206, 354], [224, 322]]), CG, 6);
+      s += `<path d="${sm([[178, 450], [188, 494], [214, 540], [234, 580], [214, 586], [190, 540], [164, 492], [160, 452]])}" fill="${COAT_SH}" opacity=".55"/>`;
+      s += line([[160, 380], [150, 440], [164, 492]], 4, { fill: COAT_HI, op: 0.8 });
+      s += `<path d="M202 570 Q218 582 234 570" fill="none" stroke="#d4a017" stroke-width="7"/>`;
+      // the pocket swallows the hand: a bulge in the trousers with its slit across the wrist
+      s += inked(sm([[192, 588], [222, 578], [252, 588], [248, 614], [216, 622], [192, 610]]), PANTS, 4, [2, 3]);
+      s += `<path d="M194 590 Q222 578 250 590" fill="none" stroke="${INK}" stroke-width="4.5" stroke-linecap="round"/>`;
+      s += line([[206, 600], [236, 606]], 2.6, { fill: COAT_HI, op: 0.7 });
     }
     let coins = '';
     for (let i = 0; i < 6; i++) { const t = i / 5, x = 214 + Math.sin(t * Math.PI) * 10 + t * 8, y = 316 + t * 70; coins += `<circle cx="${K.r1(x)}" cy="${K.r1(y)}" r="8" fill="#e0b52a" stroke="${INK}" stroke-width="3"/><rect x="${K.r1(x - 2.6)}" y="${K.r1(y - 2.6)}" width="5.2" height="5.2" fill="${INK}"/>`; }
@@ -264,8 +268,8 @@
     const faceD = sm([[170, 146], [262, 144], [270, 192], [262, 230], [240, 258], [206, 268], [178, 254], [160, 232], [152, 214], [140, 206], [150, 194], [156, 172]]);
     s += inked(faceD, '#f0c9a0', 5);
     s += `<clipPath id="cw-face${run ? 'r' : ''}"><path d="${faceD}"/></clipPath><g clip-path="url(#cw-face${run ? 'r' : ''})">` +
-      `<path d="M130 140 L280 140 L280 182 Q210 176 130 186Z" fill="${INK}" opacity=".85"/>` +
-      K.hatch({ x: 130, y: 178, w: 150, h: 16 }, { angle: 8, gap: 5, w: 2, seed: 4, color: INK, op: 0.7 }) +
+      `<path d="M130 140 L280 140 L280 194 Q210 186 130 182Z" fill="${INK}" opacity=".85"/>` +
+      K.hatch({ x: 130, y: 182, w: 150, h: 16 }, { angle: 8, gap: 5, w: 2, seed: 4, color: INK, op: 0.7 }) +
       `<path d="M236 150 L282 150 L268 240 L232 250Z" fill="${INK}" opacity=".28"/></g>`;
     if (run) {
       s += `<circle cx="178" cy="196" r="9" fill="#fff" stroke="${INK}" stroke-width="3"/><circle cx="176" cy="196" r="3" fill="${INK}"/><circle cx="214" cy="198" r="11" fill="#fff" stroke="${INK}" stroke-width="3"/><circle cx="210" cy="198" r="3.4" fill="${INK}"/>`;
@@ -283,14 +287,15 @@
     s += inked(run ? sm([[250, 150], [320, 150], [400, 170], [460, 200], [400, 210], [330, 230], [270, 250], [252, 200]]) : sm([[250, 148], [300, 150], [334, 200], [350, 270], [330, 330], [296, 300], [270, 250], [254, 200]]), '#15122e', 5);
     s += line(run ? [[270, 170], [360, 180], [440, 196]] : [[268, 170], [300, 220], [318, 290]], 3.4, { fill: '#3d4a98' });
     // nón lá, tipped forward over the eyes
-    const hat = sm([[256, 16], [312, 66], [376, 110], [424, 130], [374, 154], [250, 178], [130, 176], [82, 166], [130, 136], [196, 78]]);
+    // apex over the middle of the skull; the brim is counter-tilted so the body's lean leaves it only slightly tipped forward
+    const hat = sm([[226, 20], [278, 66], [338, 118], [392, 176], [342, 188], [228, 192], [118, 178], [64, 150], [112, 114], [172, 64]]);
     s += inked(hat, HG, 7);
     const ribs = [];
-    for (let i = 1; i <= 5; i++) { const t = i / 6; ribs.push(K.taper([[256 - 174 * t, 16 + 150 * t], [250, 16 + 162 * t], [256 + 168 * t, 16 + 114 * t]], 3, { s: 0.2, e: 0.2 })); }
+    for (let i = 1; i <= 5; i++) { const t = i / 6; ribs.push(K.taper([[226 - 162 * t, 20 + 130 * t], [228, 20 + 172 * t], [226 + 166 * t, 20 + 156 * t]], 3, { s: 0.2, e: 0.2 })); }
     s += lines(ribs, '#8a6a2a');
-    s += `<path d="M256 16 L424 130 L374 154 L250 178Z" fill="#8a6a2a" opacity=".32"/>`;
-    s += line([[82, 166], [250, 182], [424, 130]], 8, { s: 0.05, e: 0.05, min: 0.6 });
-    s += `<path d="M150 178 Q160 214 172 250" fill="none" stroke="#8a6a2a" stroke-width="3" opacity=".8"/>`;
+    s += `<path d="M226 20 L392 176 L342 188 L228 192Z" fill="#8a6a2a" opacity=".32"/>`;
+    s += line([[64, 150], [228, 192], [392, 176]], 8, { s: 0.05, e: 0.05, min: 0.6 });
+    s += `<path d="M152 182 Q162 216 174 252" fill="none" stroke="#8a6a2a" stroke-width="3" opacity=".8"/>`;
     s += `</g>`;
     if (run) s += `</g>`;
     return K.svg(560, 1040, s);
