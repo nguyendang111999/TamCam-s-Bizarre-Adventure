@@ -215,7 +215,7 @@
       ['t', T('Fonts (SIL Open Font License)', 'Phông chữ (SIL OFL)')], ['n', 'Dela Gothic One · Bangers · Patrick Hand · Lora'], ['gap'],
       ['t', T('Starring', 'Diễn viên')], ['n', 'Tấm · Cám · ' + T('Mom', 'Mẹ') + ' · Bụt · ' + T('The King', 'Nhà Vua') + ' · ' + T('An Old Woman With A Stand', 'Bà Lão Có Stand')], ['n', T('and The Narrator, as himself', 'và Người Kể Chuyện, trong vai chính mình')], ['gap'],
       ['t', T('No fish were harmed. One bird, a loom, and a book were.', 'Không con cá nào bị hại. Một con chim, một khung cửi và một quyển sách thì có.')], ['gap'], ['gap'],
-      ['h', all ? T('ALL ENDINGS FOUND', 'ĐÃ MỞ KHÓA MỌI KẾT THÚC') : T('THANK YOU FOR PLAYING', 'CẢM ƠN ĐÃ CHƠI')],
+      ['h', all ? T('ALL ENDINGS FOUND', 'ĐÃ MỞ KHÓA MỌI KẾT THÚC') : T('THANK YOU FOR PLAYING', 'CẢM ƠN ĐÃ CHƠI GAME')],
       ['s', T('…and they lived.', '…và họ sống.')],
     ];
     c.innerHTML = `<div style="position:absolute;inset:0;background:#140b16"></div><div class="roll" style="position:absolute;left:0;right:0;top:1080px;text-align:center">${lines.map(([k, v]) =>
