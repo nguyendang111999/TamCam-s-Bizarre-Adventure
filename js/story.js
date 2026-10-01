@@ -94,7 +94,7 @@
       if (c === 'who') {
         await N(L('I\'m the Narrator. I\'ve told this story ten thousand times. Grandmothers tell it. Teachers tell it. It\'s in the textbook.', 'Ta là Người Kể Chuyện. Chuyện này ta kể mười nghìn lần rồi. Bà kể. Cô giáo kể. Có cả trong sách giáo khoa.'));
         await N(L('You are Cám — it means "rice bran". Your sister is Tấm — "broken rice". Your mother named you both after pig feed.', 'Cô là Cám — tức là cám gạo. Chị cô là Tấm — tức là gạo tấm. Mẹ cô đặt tên hai đứa theo… thức ăn cho lợn.'));
-        await N(L('We don\'t talk about it.', 'Chuyện đó ta không bàn.'));
+        await N(L('We don\'t talk about it.', 'Chuyện này next nhé.'));
       } else if (c === 'sauce') {
         await N(L('Mắm. Fermented. Delivered in a jar. It\'s a very old story — people had different hobbies back then.', 'Mắm. Ủ chượp hẳn hoi. Đóng hũ gửi đi. Chuyện xưa mà — người xưa có sở thích hơi khác.'));
         await N(L('Which is exactly why you\'re going to chop first.', 'Chính vì thế mà cô phải chặt trước.'));
@@ -104,7 +104,7 @@
         await bg('path', { tr: 'wipe', ms: 900 });
         await N(L('…and at the end of the path is an areca tree.', '…và cuối con đường là một cây cau.'));
         await N(L('Hm. Would you look at that.', 'Ồ. Nhìn kìa.'));
-        await N(L('It\'s a very short story, Cám. It only has the one path.', 'Truyện này ngắn lắm, Cám. Chỉ có đúng một con đường thôi.'));
+        await N(L('It\'s a very short story, Cám. It only has the one path. The developer could not afford a second one.', 'Truyện này ngắn lắm, Cám. Chỉ có đúng một con đường thôi. Thằng dev không đủ tiền làm con đường thứ hai.'));
         break;
       } else break;
     }
@@ -117,18 +117,18 @@
     fx.panel('p:axe', TC.art.panel.axe, { x: 1180, y: 170, w: 620, h: 420 }, { rot: 3 });
     sfx('sparkle');
     fx.sfx('キラーン', { x: 1500, y: 150, style: 'gold', size: 110, rot: 8 });
-    await N(L('Leaning against the trunk is an axe. Its blade is pristine. Someone has sharpened it with love.', 'Dựa vào gốc cây là một cái rìu. Lưỡi rìu sáng loáng. Có ai đó đã mài nó bằng cả tấm lòng.'));
+    await N(L('Leaning against the trunk is an axe. Its blade is pristine. Someone has sharpened it with love.', 'Dưới gốc cây là một cái rìu. Lưỡi rìu sáng loáng. Có ai đó đã mài nó bằng cả tấm lòng.'));
     fx.closePanels();
     if (plays() > 0) await say('tam', L('Cám? Is that you down there? …Oh. It\'s this part again.', 'Cám ơi? Em đấy à? …Ồ. Lại là đoạn này.'), { tail: 1000, tailH: 160 });
     else await say('tam', L('Cám? Is that you down there?', 'Cám ơi? Em đấy à?'), { tail: 1000, tailH: 160 });
     await say('tam', L('Mom said to pick areca nuts for Dad\'s memorial! It\'s sooo windy up here!', 'Dì bảo chị trèo hái cau cúng giỗ cha! Trên này gió ghê lắm!'), { tail: 1000, tailH: 160 });
-    await N(L('Ignore her. She\'s doing a voice. Pick up the axe.', 'Kệ cô ta. Cô ta đang giả giọng hiền đấy. Cầm rìu lên.'));
+    await N(L('Ignore her. She\'s doing a voice. Pick up the axe.', 'Kệ ả đi. Cô ta đang giả giọng hiền đấy. Nhấc cái rìu lên.'));
 
     let talked = false, result = null;
     while (!result) {
       const c = await choice([
         { id: 'axe', text: L('[Pick up the axe.]', '[Cầm rìu lên.]') },
-        { id: 'talk', text: L('"Hi, sis! …Nice view up there?"', '"Chị ơi! …Trên đó ngắm cảnh đẹp không?"'), cond: () => !talked },
+        { id: 'talk', text: L('"Hi, sis! …Nice view up there?"', '"Chị ơi! …Cảnh trên đó đẹp không?"'), cond: () => !talked },
         { id: 'refuse', text: L('[Leave the axe where it is.]', '[Để yên cái rìu đó.]') },
       ]);
       if (c === 'talk') {
@@ -198,7 +198,7 @@
     await show('bird', { x: 1180, y: 196, w: 360, anim: 'down', z: 3 });
     sfx('sing');
     await say('bird', L('♪ Wash my husband\'s shirt, and wash it clean! ♪ Dry it on a pole — not the fence, you fiend! ♪', '♪ Giặt áo chồng tao, thì giặt cho sạch! ♪ Phơi áo chồng tao, phơi lao phơi sào — chớ phơi bờ rào, rách áo chồng tao! ♪'), { tail: 1330 });
-    await N(L('Yes. That is Tấm. She\'s a bird now. This is normal. It\'s in the text.', 'Phải. Đó là Tấm. Giờ cô ta là chim. Chuyện bình thường. Sách có ghi.'));
+    await N(L('Yes. That is Tấm. She\'s a bird now. This is normal. It\'s in the text.', 'Phải. Đó là Tấm. Giờ cô ta là chym. Chuyện bình thường. Sách có ghi.'));
     await say('bird', L('Tweet. Also, you\'re using way too much soap.', 'Chíp. Với lại em dùng nhiều bồ kết quá đấy.'), { tail: 1330 });
     await chorus({
       menacing: L('A BIRD is taunting us. Stand up. Strike a pose. Show her who the protagonist is.', 'Một CON CHIM đang khiêu khích chúng ta. Đứng dậy. Tạo dáng. Cho nó biết ai mới là nhân vật chính.'),
@@ -245,7 +245,7 @@
       } else {
         pref = ['coward', 'sister', 'hungry', 'menacing'];
         await N(L('You climb into the laundry basket and pull a royal robe over your head. Very regal.', 'Cô chui vào thúng quần áo, trùm áo long bào lên đầu. Trông rất ra dáng hoàng hậu.'));
-        await say('bird', L('I can see your feet, Cám.', 'Chị thấy chân em rồi, Cám.'), { tail: 1330 });
+        await say('bird', L('I can see your feet, Cám.', 'Lộ cái chân rồi nhé, Cám.'), { tail: 1330 });
       }
       break;
     }
@@ -257,14 +257,14 @@
     await say('king', L('My Queen! …Not you. The bird.', 'Hoàng hậu của trẫm! …Không phải nàng. Con chim kia.'), { tail: 1560 });
     await hide('king', { anim: 'right' });
     await chorus({
-      menacing: L('He left us. For a BIRD. The disrespect. ゴゴゴゴ', 'Hắn bỏ chúng ta. Vì một CON CHIM. Thật là sỉ nhục. ゴゴゴゴ'),
+      menacing: L('He left us. For a BIRD. The disrespect. ゴゴゴゴ', 'Hắn bỏ chúng ta. Vì một CON CHIM. Thật là nhục nhã. ゴゴゴゴ'),
       sister: L('…He does look really happy, though.', '…Nhưng mà trông anh ấy hạnh phúc thật.'),
       coward: L('Great. Now the bird has political power.', 'Hay rồi. Giờ con chim có cả quyền lực chính trị.'),
     });
     await N(L('And so, as the story demands, the bird met with an unfortunate accident involving a cooking pot.', 'Và thế là, theo đúng yêu cầu cốt truyện, con chim gặp một tai nạn đáng tiếc liên quan tới… nồi canh.'));
     await MG().potDrop();
     if (has('hungryBird')) await N(L('You had seconds.', 'Cô còn xin thêm bát nữa.'));
-    await N(L('Its feathers became a tree. You chopped it down. It became a loom. …I\'m summarizing. We\'re on a schedule.', 'Lông chim mọc thành cây xoan đào. Cô chặt cây. Gỗ đóng thành khung cửi. …Ta tóm tắt đấy. Chúng ta có lịch trình.'));
+    await N(L('Its feathers became a tree. You chopped it down. It became a loom. …I\'m summarizing. We\'re on a schedule.', 'Lông chim mọc thành cây xoan đào. Cô chặt cây. Gỗ đóng thành khung cửi. …Ta tóm tắt đấy. Đang phải chạy KPI.'));
     flag('v2', pickVoice(pref));
     await tbc();
     return 'ch3';
@@ -276,15 +276,15 @@
     await bg('loomroom', { tr: 'black' });
     music('loom');
     await show('loom', { variant: 'calm', x: 560, y: 150, w: 800, anim: 'fade', z: 1 });
-    await N(L('Night. You sit at the loom that was the tree, that was the bird, that was your sister. Weaving is relaxing. Weave something.', 'Đêm. Cô ngồi bên khung cửi từng là cái cây, từng là con chim, từng là chị cô. Dệt vải giúp thư giãn. Dệt gì đó đi.'));
+    await N(L('Night. You sit at the loom that was the tree, that was the bird, that was your sister. Weaving is relaxing. Weave something.', 'Đêm. Cô ngồi bên khung cửi từng là cái cây, từng là con chim, từng là chị cô. Dệt vải giúp thư giãn. Dệt để healing.'));
     await newVoice(get('v2'));
     await MG().weave();
     await say('loom', L('Clickety-clack, little sister. How\'s my husband?', 'Cót ca cót két, em gái ơi. Chồng chị dạo này khỏe không?'), { tail: 960 });
     await N(L('Don\'t engage with the furniture.', 'Đừng nói chuyện với đồ đạc.'));
     await chorus({
-      menacing: L('Oh, she\'s GOOD. That was genuinely menacing. I\'m taking notes.', 'Ồ, ả giỏi đấy. Đáng sợ thật sự. Ta phải ghi chép lại.'),
-      sister: L('She\'s not angry. She\'s… hurt. Listen to her voice.', 'Chị ấy không giận đâu. Chị ấy… đau. Nghe giọng chị ấy mà xem.'),
-      coward: L('NOPE. The furniture is threatening us. I\'m out. Legs, let\'s go.', 'THÔI XONG. Đồ đạc đang dọa giết mình. Tui té đây. Chân ơi, chạy.'),
+      menacing: L('Oh, she\'s GOOD. That was genuinely menacing. I\'m taking notes.', 'Ồ, ả giỏi đấy. Đáng sợ thật. Ta phải ghi chép lại.'),
+      sister: L('She\'s not angry. She\'s… hurt. Listen to her voice.', 'Chị ấy không giận đâu. Chị ấy… đang đau khổ. Nghe giọng chị ấy mà xem.'),
+      coward: L('NOPE. The furniture is threatening us. I\'m out. Legs, let\'s go.', 'THÔI XONG. Cái khung cửi đang dọa giết mình. Tui té đây. Chân ơi, chạyyy.'),
       hungry: L('Can you eat a loom? Asking for me. I\'m the one asking.', 'Khung cửi ăn được không? Hỏi giùm tui. À mà tui là người hỏi.'),
     });
     const tag = (v) => (hasVoice(v) ? v : undefined);
@@ -359,7 +359,7 @@
       await N(L('She pats your head. Nobody has patted your head in ten thousand tellings.', 'Bà xoa đầu cô. Mười nghìn lần kể chuyện, chưa ai xoa đầu cô cả.'));
     } else if (c === 'snatch') {
       await N(L('You dive for the fruit. So does she. Time slows down—', 'Cô lao tới chộp quả thị. Bà lão cũng lao tới. Thời gian như chậm lại—'));
-      await say('oldwoman', L('ZA WARUDO! Time, stop!', 'THẾ GIỚI! Thời gian, ngừng lại!'), { style: 'shout', tail: 520 });
+      await say('oldwoman', L('ZA WARUDO! Time, stop!', 'ZA WARUDO! Thời gian, ngừng lại!'), { style: 'shout', tail: 520 });
       await MG().oldWomanTimeStop();
       await say('oldwoman', L('…And time resumes.', '…Và thời gian tiếp tục trôi.'), { tail: 520 });
       await N(L('…The old woman has a Stand?', '…Bà lão có Stand à?'));
@@ -368,7 +368,7 @@
       flag('ateFruit');
       sfx('bite'); fx.sfx('ガブッ', { x: 1330, y: 300, style: 'impact', size: 150 }); fx.shake(10, 250);
       await say('fruit', L('OW!', 'ÁI!'), { style: 'shout', tail: 1330 });
-      await say('fruit', L('Cám, I swear on Dad\'s grave—', 'Cám, chị thề trên mộ cha—'), { tail: 1330 });
+      await say('fruit', L('Cám, I swear on Dad\'s grave—', 'Cám, nhà vua tới kìa—'), { tail: 1330 });
       await N(L('You spit it out. It rolls, very deliberately, into the old woman\'s bag.', 'Cô nhổ nó ra. Nó lăn, rất có chủ đích, vào thẳng bị bà lão.'));
       await MG().fruitToBag();
     } else {
@@ -409,7 +409,7 @@
     await say('tam', L('Then witness my Stand!', 'Vậy thì chiêm ngưỡng Stand của chị đi!'), { style: 'shout', tail: 700 });
     await MG().standReveal('tam');
     await N(L('…She has a Stand. Of course she has a Stand. Why does she have a Stand?', '…Cô ta có Stand. Tất nhiên rồi. Mà sao cô ta lại có Stand?'));
-    await me(L('Fine. MOM!', 'Được thôi. MẸ ƠI!'), { style: 'shout' });
+    await me(L('Fine. MOM!', 'Được thôi. MẸEE!'), { style: 'shout' });
     await MG().standReveal('cam');
     await say('mom', L('Mommy\'s here, sweetie.', 'Mẹ đây, con yêu.'), { tail: 1300 });
     const won = await MG().rush();
@@ -418,7 +418,7 @@
     await MG().aftermath();
     if (won) {
       await say('tam', L('…You\'ve gotten stronger.', '…Em mạnh lên rồi đấy.'), { tail: 700 });
-      await me(L('…You\'ve gotten more birds.', '…Chị thì nhiều chim hơn.'));
+      await me(L('…You\'ve gotten more birds.', '…Chị thì nhiều chim hơn đấy.'));
     } else {
       await me(L('…Ow.', '…Đau.'));
       await say('tam', L('…Your mom punches like a rice pestle.', '…Mẹ em đấm như chày giã gạo.'), { tail: 700 });
@@ -434,14 +434,14 @@
     await say('tam', L('Every time, I boil you. And every time, they call me the good one.', 'Lần nào chị cũng dội nước sôi vào em. Và lần nào người ta cũng gọi chị là người hiền.'), { tail: 700 });
     if (plays() > 0) await say('tam', L('…Ten thousand and one, actually. You keep coming back too, don\'t you?', '…Mười nghìn lẻ một, nói đúng ra. Em cũng cứ quay lại mãi, phải không?'), { tail: 700 });
     await chorus({
-      menacing: L('…Huh. So she\'s ALSO a villain. Respect.', '…Hừm. Vậy ra ả CŨNG là phản diện. Nể.'),
+      menacing: L('…Huh. So she\'s ALSO a villain. Respect.', '…Hừm. Vậy ra ả CŨNG là phản diện. Respect.'),
       hungry: L('I\'m not hungry anymore. That\'s how you know it\'s serious.', 'Tui hết đói rồi. Vậy là biết chuyện nghiêm trọng cỡ nào.'),
       sister: L('She\'s tired. She\'s just as tired as we are.', 'Chị ấy mệt rồi. Mệt y như tụi mình.'),
       coward: L('Wait — the MAIN CHARACTER is scared too?!', 'Khoan — NHÂN VẬT CHÍNH cũng sợ hả?!'),
     });
     await N(L('Stop. Stop talking. You\'re the heroine. Heroines don\'t have feelings about page forty-seven.', 'Dừng. Thôi ngay. Cô là nữ chính. Nữ chính không được có cảm xúc về trang bốn mươi bảy.'));
     await say('tam', L('They changed it once, you know. The ending. A school textbook, 2011. They cut the fish sauce.', 'Họ từng sửa nó đấy, em biết không. Cái kết ấy. Sách giáo khoa năm 2011. Họ bỏ đoạn làm mắm.'), { tail: 700 });
-    await N(L('A dark day for fish sauce.', 'Một ngày đen tối của ngành mắm.'));
+    await N(L('A dark day for fish sauce.', 'Một ngày đen tối của ngành nước mắm.'));
     await say('tam', L('If they could change it… couldn\'t we?', 'Nếu họ sửa được… thì sao chúng ta lại không?'), { tail: 700 });
     await N(L('Absolutely not. Cám, you know what to do. Get in the bath.', 'Tuyệt đối không. Cám, cô biết phải làm gì rồi đấy. Vào bồn tắm đi.'));
     const f = await choice([
@@ -487,11 +487,11 @@
     await V('coward', L('Of the thirty-six stratagems, the best one is RUNNING AWAY!', 'Ba mươi sáu kế, chuồn là thượng sách!'), { style: 'shout' });
     await MG().runAway('cam');
     await say('tam', L('…Did she just—', '…Nó vừa—'), { tail: 700 });
-    await N(L('She\'s RUNNING? At the CLIMAX? You can\'t run from the—', 'Nó CHẠY? Ngay ĐOẠN CAO TRÀO? Không được chạy khỏi—'));
+    await N(L('She\'s RUNNING? At the CLIMAX? You can\'t run from the—', 'Nó CHẠY? Ngay ĐOẠN CAO TRÀO? Không được chạy—'));
     await say('tam', L('…Wait. That\'s allowed?', '…Khoan. Được phép vậy hả?'), { tail: 700 });
     await MG().runAway('tam');
     await N(L('Come back! Both of you! There\'s a WEDDING scene! There\'s FISH SAUCE!', 'Quay lại! Cả hai! Còn cảnh ĐÁM CƯỚI! Còn vụ LÀM MẮM nữa!'));
-    await N(L('…And they ran, and ran. And the story, having no one left to tell, sat down on the palace steps and had a little cry.', '…Và họ chạy mãi, chạy mãi. Còn câu chuyện, chẳng còn ai để kể, ngồi bệt xuống bậc thềm và khóc thút thít.'));
+    await N(L('…And they ran, and ran. And the story, having no one left to tell, sat down on the palace steps and had a little cry.', '…Và họ chạy mãi, chạy mãi. Còn người kể chuyện, chẳng còn gì để kể, ngồi bệt xuống bậc thềm và khóc thút thít.'));
     await MG().butAppear(1180, 200);
     await say('but', L('Why are you crying, my child?', 'Làm sao con khóc?'), { tail: 1420 });
     await N(L('…Oh, NOW you show up.', '…Ồ, GIỜ ông mới chịu hiện ra.'));
@@ -516,7 +516,7 @@
 
   const endTrue = async () => {
     await me(L('Chị Tấm… let\'s change it.', 'Chị Tấm… mình sửa nó đi.'));
-    await V('sister', L('…There you are.', '…Cậu đây rồi.'));
+    await V('sister', L('…There you are.', '…Tuyệt vờiii.'));
     await N(L('No. No, no, no. You don\'t get to change it. It\'s been told ten thousand times. It\'s written in stone. It\'s in the TEXTBOOK—', 'Không. Không không không. Các người không được sửa. Nó được kể mười nghìn lần rồi. Khắc vào đá rồi. Có trong SÁCH GIÁO KHOA—'));
     await say('tam', L('The textbook changed.', 'Sách giáo khoa cũng sửa rồi mà.'), { tail: 700 });
     await N(L('That was ONE TIME!', 'Có MỘT LẦN thôi!'));
@@ -528,7 +528,7 @@
     await say('but', L('Ten thousand tellings, and you never cried for real. Not once.', 'Mười nghìn lần kể, con chưa từng khóc thật. Chưa một lần.'), { tail: 800 });
     await say('but', L('So. What do you need?', 'Nào. Con cần gì?'), { tail: 800 });
     await me(L('…A new ending.', '…Một cái kết mới.'));
-    await say('but', L('That, I can\'t give you. But the two of you can write one.', 'Cái đó ta không cho được. Nhưng hai chị em con có thể tự viết.'), { tail: 800 });
+    await say('but', L('That, I can\'t give you. But the two of you can write one.', 'Cái đó ta không cho được. Nhưng hai chị em con có thể viết cùng nhau.'), { tail: 800 });
     await MG().butVanish();
     await MG().page47();
     await say('tam', L('Ready, em?', 'Sẵn sàng chưa, em?'), { tail: 700 });
@@ -541,7 +541,7 @@
     await MG().epilogue();
     await N(L('Once upon a now, there were two sisters.', 'Ngày xửa ngày nay, có hai chị em.'));
     await N(L('They were named after pig feed. They argued about everything. Nobody boiled anybody.', 'Tên hai đứa đặt theo thức ăn cho lợn. Chuyện gì cũng cãi nhau. Không ai dội nước sôi vào ai.'));
-    await N(L('And they lived. That\'s it. That\'s the ending.', 'Và họ sống. Vậy thôi. Đó là cái kết.'));
+    await N(L('And they lived. That\'s it. That\'s the ending.', 'Và họ đã sống. Vậy thôi. Đó là cái kết.'));
     await N(L('…I think I like it.', '…Ta nghĩ… ta thích nó.'));
     return TC.main.ending('true');
   };
