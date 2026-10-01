@@ -90,7 +90,7 @@
       </div>
       <button class="mbtn" data-a="fs" style="position:absolute;right:40px;top:104px;min-width:0;font-size:30px;padding:6px 18px">⛶</button>
       <div class="quip" style="position:absolute;left:92px;bottom:92px;max-width:900px;font-family:var(--f-tell);font-style:italic;font-size:36px;color:#fbf3dc;text-shadow:3px 3px 0 #140b16,0 0 18px #140b16">${U.esc(TC.t(quip))}</div>
-      <div style="position:absolute;left:92px;right:40px;bottom:30px;font-family:var(--f-talk);font-size:24px;color:#fbf3dcaa;text-shadow:2px 2px 0 #140b16">${M.AUTHOR ? U.esc(M.AUTHOR) + ' · ' : ''}${T('A goofy fan tribute to Slay the Princess & JoJo\'s Bizarre Adventure, retelling the Vietnamese folk tale Tấm Cám. Not affiliated. Everything you see and hear is generated in code.', 'Một tác phẩm fan vui nhộn, tri ân Slay the Princess & JoJo\'s Bizarre Adventure, kể lại truyện cổ tích Tấm Cám. Không liên kết chính thức. Mọi hình ảnh và âm thanh đều được tạo bằng code.')}</div>`;
+      <div style="position:absolute;left:92px;right:40px;bottom:30px;font-family:var(--f-talk);font-size:24px;color:#fbf3dcaa;text-shadow:2px 2px 0 #140b16">${M.AUTHOR ? U.esc(M.AUTHOR) + ' · ' : ''}${T('Inspired by Slay the Princess & JoJo\'s Bizarre Adventure, retelling the Vietnamese folk tale Tấm Cám.', 'Lấy cảm hứng từ Slay the Princess & JoJo\'s Bizarre Adventure, kể lại truyện cổ tích Tấm Cám.')}</div>`;
     $('menus').appendChild(titleEl);
     titleEl.animate([{ opacity: 0 }, { opacity: 1 }], { duration: quick ? 1 : 700, fill: 'forwards' });
     const logo = titleEl.querySelector('.logo-wrap');

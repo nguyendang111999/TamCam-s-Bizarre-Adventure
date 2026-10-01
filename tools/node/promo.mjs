@@ -1,7 +1,8 @@
 // Captures promotional screenshots (1280×720) for the itch.io page into dist/itch-page/.
 import puppeteer from 'puppeteer-core';
 import fs from 'node:fs';
-const OUT = 'C:/Users/nguye/Projects/TamCam/dist/itch-page';
+import { fileURLToPath } from 'node:url';
+const OUT = fileURLToPath(new URL('../../dist/itch-page', import.meta.url));
 fs.mkdirSync(OUT, { recursive: true });
 const lang = process.argv[2] || 'en';
 const b = await puppeteer.launch({ executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe', headless: 'new', args: ['--autoplay-policy=no-user-gesture-required'], defaultViewport: { width: 1920, height: 1080, deviceScaleFactor: 2 / 3 } });
