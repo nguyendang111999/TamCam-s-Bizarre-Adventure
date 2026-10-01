@@ -1,0 +1,39 @@
+<!doctype html><html><head><meta charset="utf-8"></head><body>
+<script src="../../js/core.js"></script>
+<script src="../../js/audio.js"></script>
+<script src="../../js/music.js"></script>
+<script>
+TC.persist.load();
+// WAV (16-bit) as base64
+function wav(buf) {
+  const ch = buf.numberOfChannels, len = buf.length, sr = buf.sampleRate;
+  const out = new DataView(new ArrayBuffer(44 + len * ch * 2));
+  const w = (o, s) => { for (let i = 0; i < s.length; i++) out.setUint8(o + i, s.charCodeAt(i)); };
+  w(0, 'RIFF'); out.setUint32(4, 36 + len * ch * 2, true); w(8, 'WAVE'); w(12, 'fmt '); out.setUint32(16, 16, true); out.setUint16(20, 1, true);
+  out.setUint16(22, ch, true); out.setUint32(24, sr, true); out.setUint32(28, sr * ch * 2, true); out.setUint16(32, ch * 2, true); out.setUint16(34, 16, true);
+  w(36, 'data'); out.setUint32(40, len * ch * 2, true);
+  const data = [...Array(ch)].map((_, c) => buf.getChannelData(c));
+  let o = 44;
+  for (let i = 0; i < len; i++) for (let c = 0; c < ch; c++) { const v = Math.max(-1, Math.min(1, data[c][i])); out.setInt16(o, v * 32767, true); o += 2; }
+  let bin = ''; const bytes = new Uint8Array(out.buffer);
+  for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+  return btoa(bin);
+}
+window.renderTrack = async (id, secs, params) => wav(await TC.music.renderOffline(id, secs, params || {}));
+window.renderSfx = async (names, gap) => {
+  const sr = 44100, secs = names.length * gap + 3, off = new OfflineAudioContext(2, sr * secs, sr);
+  TC.audio.initWith(off);
+  names.forEach((n, i) => TC.audio.sfx(n, 0.1 + i * gap));
+  return wav(await off.startRendering());
+};
+window.renderBlips = async () => {
+  const sr = 44100, off = new OfflineAudioContext(2, sr * 12, sr);
+  TC.audio.initWith(off);
+  const who = ['narrator', 'cam', 'tam', 'menacing', 'hungry', 'sister', 'coward', 'but', 'mom', 'king', 'oldwoman', 'bird', 'loom'];
+  // A.blip uses ctx.currentTime (0 offline) — emulate typing by offsetting via tone scheduling
+  const A = TC.audio; let t = 0.1;
+  who.forEach((w) => { for (let i = 0; i < 12; i++) { const orig = A.now; A.now = () => t; A.blip(w, 'a'); A.now = orig; t += 0.06; } t += 0.25; });
+  return wav(await off.startRendering());
+};
+document.title = 'ready';
+</script></body></html>

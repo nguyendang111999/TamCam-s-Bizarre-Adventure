@@ -1,0 +1,8 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../../fonts/fonts.css"><link rel="stylesheet" href="../../css/style.css">
+<style>html,body{overflow:hidden}#s{position:relative;width:1920px;height:1080px}</style></head><body><div id="s"></div>
+<script src="../../js/core.js"></script><script src="../../js/ink.js"></script><script src="../../js/art_bg.js"></script><script src="../../js/art_chars.js"></script><script src="../../js/art_props.js"></script>
+<script>
+TC.stands = { tam: { name: "STAYIN' ALIVE", jp: '「ステイン・アライヴ」', color: '#f7c325', dark: '#6b4a00', art: 'stand_tam', user: TC.L('STAND USER: TẤM'), stats: { power: 'B', speed: 'A', range: 'C', stamina: '∞', precision: 'A', potential: 'A' }, note: TC.L('Keeps coming back. Bird. Tree. Loom. Fruit. Folds betel leaves into phoenix wings at Speed A.') },
+  cam: { name: 'MAMMA MIA', jp: '「マンマ・ミーア」', color: '#ff6fa8', dark: '#6b0a33', art: 'stand_cam', user: TC.L('STAND USER: CÁM'), stats: { power: 'A', speed: 'E', range: 'A', stamina: 'A', precision: 'E', potential: 'E' }, note: TC.L('It is literally her mom. Range: the entire village. Development potential: set in her ways.') } };
+document.getElementById('s').innerHTML = TC.art.standCard(TC.stands[new URLSearchParams(location.search).get('who') || 'tam']);
+</script></body></html>

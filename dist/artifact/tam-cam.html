@@ -1,0 +1,61 @@
+<title>Tấm Cám's Bizarre Adventure</title>
+<meta name="description" content="A goofy Slay-the-Princess-style retelling of the Vietnamese fairy tale Tấm Cám, staged like JoJo's Bizarre Adventure.">
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="css/style.css">
+<style>:root{color-scheme:dark;background:#0b060d}html,body{background:#0b060d}</style>
+<div id="app">
+  <div id="stage">
+    <div id="world">
+      <div id="bg" class="layer"></div>
+      <div id="actors" class="layer"></div>
+    </div>
+    <canvas id="fx" class="layer"></canvas>
+    <div id="panels" class="layer"></div>
+    <div id="sfx" class="layer"></div>
+    <div id="fade" class="layer"></div>
+    <div id="ui" class="layer">
+      <div id="voices"></div>
+      <div id="hud">
+        <button class="hud-btn" data-act="auto" title="Auto (A)">AUTO</button>
+        <button class="hud-btn" data-act="skip" title="Skip (S / hold Ctrl)">SKIP</button>
+        <button class="hud-btn" data-act="log" title="Log (L)">LOG</button>
+        <button class="hud-btn" data-act="menu" title="Menu (Esc)">☰</button>
+      </div>
+      <div id="choices"></div>
+      <div id="box" class="hidden">
+        <div id="box-frame"></div>
+        <div id="nametag"><span></span></div>
+        <div id="text"></div>
+        <div id="next">▼</div>
+      </div>
+      <div id="prompt" class="hidden"></div>
+    </div>
+    <div id="overlay" class="layer"></div>
+    <div id="menus" class="layer"></div>
+    <div id="grain" class="layer"></div>
+  </div>
+</div>
+<div id="boot">
+  <div class="boot-inner">
+    <div class="boot-logo">TẤM CÁM</div>
+    <div class="boot-sub">'S BIZARRE ADVENTURE</div>
+    <button id="boot-btn" disabled>LOADING…</button>
+    <div class="boot-note">🔊 Sound on · best in fullscreen · <span class="kbd">Space</span>/<span class="kbd">Click</span>/<span class="kbd">Tap</span> to advance</div>
+  </div>
+</div>
+<div id="rotate"><div>↻</div><p>Rotate your phone<br><small>Xoay ngang điện thoại</small></p></div>
+<noscript><p style="color:#fff;font:20px sans-serif;padding:40px">This game needs JavaScript.</p></noscript>
+
+<script src="js/core.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/music.js"></script>
+<script src="js/ink.js"></script>
+<script src="js/art_bg.js"></script>
+<script src="js/art_chars.js"></script>
+<script src="js/art_props.js"></script>
+<script src="js/fx.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/minigames.js"></script>
+<script src="js/story.js"></script>
+<script src="js/main.js"></script>

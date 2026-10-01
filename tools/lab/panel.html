@@ -1,0 +1,15 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../../fonts/fonts.css">
+<style>html,body{margin:0;background:#444}#s{position:relative;width:1920px;height:1080px;overflow:hidden}</style></head><body><div id="s"></div>
+<script src="../../js/core.js"></script><script src="../../js/ink.js"></script><script src="../../js/art_bg.js"></script><script src="../../js/art_chars.js"></script><script src="../../js/art_props.js"></script>
+<script>
+// usage: panel.html?p=axe&x=..&y=..&w=..  (renders TC.art.panel[p] or prop) ; several via ;
+TC.ink.installDefs();
+const q = new URLSearchParams(location.search), S = document.getElementById('s');
+if (q.get('bg')) S.insertAdjacentHTML('beforeend', `<div style="position:absolute;inset:0">${TC.art.bg[q.get('bg')]()}</div>`);
+(q.get('items') || '').split(';').filter(Boolean).forEach((spec) => {
+  const [kind, id, x, y, w, v] = spec.split(',');
+  const src = (kind === 'panel' ? TC.art.panel : kind === 'prop' ? TC.art.prop : TC.art.ch)[id](v);
+  const d = document.createElement('div'); d.style.cssText = `position:absolute;left:${x}px;top:${y}px;width:${w}px`;
+  d.innerHTML = src; const svg = d.querySelector('svg'); svg.style.width = '100%'; svg.style.height = 'auto'; S.appendChild(d);
+});
+</script></body></html>

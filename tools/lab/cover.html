@@ -1,0 +1,41 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../fonts/fonts.css">
+<link rel="stylesheet" href="../../css/style.css">
+<style>
+html,body{margin:0;overflow:hidden;background:#000;touch-action:auto}
+#c{position:relative;overflow:hidden;background:#1a0830}
+#c img{position:absolute}
+.logo{position:absolute;font-family:var(--f-logo);color:#f7c325;-webkit-text-stroke:3px #140b16;paint-order:stroke fill;text-shadow:5px 5px 0 #ff3d8b,9px 9px 0 #140b16;transform:rotate(-5deg) skew(-8deg);line-height:.95;white-space:nowrap}
+.sub{position:absolute;font-family:var(--f-comic);color:#3fe6ff;-webkit-text-stroke:2px #140b16;paint-order:stroke fill;text-shadow:3px 3px 0 #140b16;letter-spacing:.12em;transform:rotate(-5deg) skew(-8deg);white-space:nowrap}
+.tag{position:absolute;background:#140b16;color:#fff;font-family:var(--f-comic);letter-spacing:.18em;padding:3px 14px;transform:rotate(-5deg) skew(-12deg);white-space:nowrap}
+.sfx{position:absolute;font-family:var(--f-jp);color:#6f9bff;-webkit-text-stroke:5px #0e1748;paint-order:stroke fill;text-shadow:3px 4px 0 #1b2a7a;transform:rotate(-10deg) skew(-10deg);white-space:nowrap}
+</style></head><body>
+<div id="c"></div>
+<script src="../../js/core.js"></script>
+<script src="../../js/ink.js"></script>
+<script src="../../js/art_bg.js"></script>
+<script src="../../js/art_chars.js"></script>
+<script src="../../js/art_props.js"></script>
+<script>
+// ?w=630&h=500 (itch cover) or ?w=1280&h=720 etc.
+const q = new URLSearchParams(location.search), W = +(q.get('w') || 630), H = +(q.get('h') || 500);
+const c = document.getElementById('c'); c.style.width = W + 'px'; c.style.height = H + 'px';
+const svg = TC.art.bg.title();
+const img = new Image();
+img.src = URL.createObjectURL(new Blob([svg], { type: 'image/svg+xml' }));
+// scale the 1920x1080 key art so the characters fill the right side
+const s = Math.max(H / 1080 * 0.995, W / 1920);
+img.style.width = 1920 * s + 'px'; img.style.height = 1080 * s + 'px';
+const u = Math.min(W / 630, H / 500);
+// one-line logo across the top; the key art sits below it so Tấm's head stays clear of the title
+img.style.left = (W - 1920 * s) + 'px'; img.style.top = (H - 1080 * s) / 2 + 100 * u + 'px';
+img.style.webkitMaskImage = img.style.maskImage = `linear-gradient(to bottom, transparent 0, #000 ${60 * u}px)`;
+c.appendChild(img);
+c.insertAdjacentHTML('beforeend', `
+  <div class="sfx" style="left:${W * 0.5}px;top:${H * 0.68}px;font-size:${50 * u}px">ドドドド</div>
+  <div class="logo" style="left:${18 * u}px;top:${30 * u}px;font-size:${70 * u}px">TẤM CÁM</div>
+  <div class="sub" style="left:${30 * u}px;top:${112 * u}px;font-size:${24 * u}px">'S BIZARRE ADVENTURE</div>
+  <div class="tag" style="left:${40 * u}px;top:${148 * u}px;font-size:${16 * u}px">RICEDUST CRUSADERS</div>`);
+document.fonts.ready.then(() => img.decode()).then(() => (document.title = 'ready'));
+</script></body></html>
