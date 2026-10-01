@@ -75,8 +75,8 @@
     titleEl = U.el('div', { class: 'menu-root title' });
     titleEl.innerHTML = `
       <div class="logo-wrap" style="position:absolute;left:70px;top:44px;transform:rotate(-4deg)">
-        <div style="font-family:var(--f-logo);font-size:190px;line-height:.95;color:#f7c325;-webkit-text-stroke:7px #140b16;paint-order:stroke fill;text-shadow:10px 10px 0 #ff3d8b,20px 20px 0 #140b16;letter-spacing:-.02em;transform:skew(-8deg)">TẤM CÁM</div>
-        <div style="font-family:var(--f-comic);font-size:64px;letter-spacing:.14em;color:#3fe6ff;-webkit-text-stroke:3px #140b16;paint-order:stroke fill;text-shadow:5px 5px 0 #140b16;margin:14px 0 0 30px;transform:skew(-8deg)">'S BIZARRE ADVENTURE</div>
+        <div style="font-family:var(--f-logo);font-size:172px;line-height:.95;color:#f7c325;-webkit-text-stroke:7px #140b16;paint-order:stroke fill;text-shadow:10px 10px 0 #ff3d8b,20px 20px 0 #140b16;letter-spacing:-.02em;white-space:nowrap;transform:skew(-8deg)">TẤM CÁM'S</div>
+        <div style="font-family:var(--f-comic);font-size:68px;letter-spacing:.14em;color:#3fe6ff;-webkit-text-stroke:3px #140b16;paint-order:stroke fill;text-shadow:5px 5px 0 #140b16;margin:14px 0 0 30px;transform:skew(-8deg)">BIZARRE ADVENTURE</div>
         <div style="display:inline-block;margin:18px 0 0 40px;padding:6px 26px;background:#140b16;color:#fff;font-family:var(--f-comic);font-size:38px;letter-spacing:.2em;transform:skew(-12deg)">RICEDUST CRUSADERS</div>
       </div>
       <div class="tmenu" style="position:absolute;left:92px;top:470px;display:flex;flex-direction:column;gap:14px">

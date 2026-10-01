@@ -229,10 +229,13 @@
     if (!run) s += `<path d="M84 978 L198 976" stroke="${INK}" stroke-width="4"/>`;
 
     s += `<g transform="${body}">`;
-    // far arm: barely visible behind the torso
-    s += run
-      ? inked(sm([[290, 320], [360, 360], [420, 380], [460, 360], [470, 392], [420, 420], [350, 410], [290, 380]]), COAT_SH, 5) + inked(sm([[452, 350], [490, 344], [500, 380], [470, 398]]), SKIN, 4)
-      : inked(sm([[292, 318], [330, 360], [356, 420], [362, 470], [340, 512], [306, 548], [286, 520], [318, 470], [322, 420], [296, 372]]), COAT_SH, 5);
+    // far arm: barely visible behind the torso (run) / her right elbow jutting out past the coat front, hand in pocket (walk)
+    if (run) s += inked(sm([[290, 320], [360, 360], [420, 380], [460, 360], [470, 392], [420, 420], [350, 410], [290, 380]]), COAT_SH, 5) + inked(sm([[452, 350], [490, 344], [500, 380], [470, 398]]), SKIN, 4);
+    else {
+      const farArm = sm([[196, 296], [168, 320], [146, 370], [128, 420], [118, 452], [130, 480], [158, 508], [194, 542], [214, 520], [186, 488], [166, 456], [170, 420], [188, 372], [210, 330]]);
+      s += inked(farArm, CG, 6) + `<path d="${farArm}" fill="${COAT_SH}" opacity=".35"/>`;
+      s += line([[150, 380], [132, 430], [130, 466]], 3.6, { fill: COAT_HI, op: 0.8 });
+    }
     // torso: open coat, lavender áo underneath, high collar
     const torso = sm([[196, 290], [168, 340], [150, 420], [160, 500], [184, 560], [320, 560], [330, 460], [324, 360], [300, 300], [246, 278]]);
     s += inked(torso, CG, 7);
@@ -244,20 +247,11 @@
     s += inked(sm([[170, 540], [330, 534], [334, 570], [172, 580]]), '#6b1c3c', 5);
     // collar + the coin chain (tiền đồng) hanging from it, Jotaro-style
     s += inked(sm([[190, 276], [252, 266], [266, 310], [196, 318]]), COAT_SH, 5);
-    // near arm: hand jammed in her pocket, elbow out (walk) / pumps forward (run)
+    // near arm: pumps forward (run); the walking near arm is drawn after the hair, below
     if (run) {
       s += inked(sm([[196, 312], [150, 340], [104, 360], [70, 330], [60, 300], [90, 290], [124, 316], [170, 300]]), CG, 6);
       s += inked(sm([[40, 268], [84, 262], [96, 300], [66, 318], [38, 302]]), SKIN, 5);
       s += line([[50, 284], [84, 280]], 2.6) + line([[48, 296], [80, 296]], 2.6);
-    } else {
-      s += inked(sm([[198, 304], [168, 344], [146, 400], [138, 452], [152, 500], [180, 548], [206, 590], [234, 580], [214, 540], [188, 494], [178, 450], [186, 400], [206, 354], [224, 322]]), CG, 6);
-      s += `<path d="${sm([[178, 450], [188, 494], [214, 540], [234, 580], [214, 586], [190, 540], [164, 492], [160, 452]])}" fill="${COAT_SH}" opacity=".55"/>`;
-      s += line([[160, 380], [150, 440], [164, 492]], 4, { fill: COAT_HI, op: 0.8 });
-      s += `<path d="M202 570 Q218 582 234 570" fill="none" stroke="#d4a017" stroke-width="7"/>`;
-      // the pocket swallows the hand: a bulge in the trousers with its slit across the wrist
-      s += inked(sm([[192, 588], [222, 578], [252, 588], [248, 614], [216, 622], [192, 610]]), PANTS, 4, [2, 3]);
-      s += `<path d="M194 590 Q222 578 250 590" fill="none" stroke="${INK}" stroke-width="4.5" stroke-linecap="round"/>`;
-      s += line([[206, 600], [236, 606]], 2.6, { fill: COAT_HI, op: 0.7 });
     }
     let coins = '';
     for (let i = 0; i < 6; i++) { const t = i / 5, x = 214 + Math.sin(t * Math.PI) * 10 + t * 8, y = 316 + t * 70; coins += `<circle cx="${K.r1(x)}" cy="${K.r1(y)}" r="8" fill="#e0b52a" stroke="${INK}" stroke-width="3"/><rect x="${K.r1(x - 2.6)}" y="${K.r1(y - 2.6)}" width="5.2" height="5.2" fill="${INK}"/>`; }
@@ -286,6 +280,18 @@
     // hair: long and black, streaming back from under the hat
     s += inked(run ? sm([[250, 150], [320, 150], [400, 170], [460, 200], [400, 210], [330, 230], [270, 250], [252, 200]]) : sm([[250, 148], [300, 150], [334, 200], [350, 270], [330, 330], [296, 300], [270, 250], [254, 200]]), '#15122e', 5);
     s += line(run ? [[270, 170], [360, 180], [440, 196]] : [[268, 170], [300, 220], [318, 290]], 3.4, { fill: '#3d4a98' });
+    if (!run) {
+      // near arm = her LEFT arm, on the viewer's right, in front of the hair: elbow out, hand jammed in the hip pocket
+      const nearArm = sm([[298, 298], [334, 318], [358, 370], [372, 430], [370, 470], [350, 512], [326, 554], [308, 592], [284, 584], [302, 544], [326, 500], [338, 456], [330, 404], [310, 354], [288, 326]]);
+      s += inked(nearArm, CG, 6);
+      s += `<path d="${sm([[288, 326], [310, 354], [330, 404], [338, 456], [326, 500], [302, 544], [284, 584], [296, 588], [318, 540], [344, 494], [352, 450], [344, 396], [320, 340]])}" fill="${COAT_SH}" opacity=".6"/>`;
+      s += line([[340, 336], [362, 400], [366, 452]], 4.5, { fill: COAT_HI, op: 0.9 });
+      s += `<path d="M288 566 Q302 580 320 572" fill="none" stroke="#d4a017" stroke-width="7"/>`;
+      // the pocket swallows the hand: a bulge in the trousers with its slit across the wrist
+      s += inked(sm([[272, 588], [302, 578], [332, 588], [328, 614], [298, 622], [272, 610]]), PANTS, 4, [2, 3]);
+      s += `<path d="M274 590 Q302 578 330 590" fill="none" stroke="${INK}" stroke-width="4.5" stroke-linecap="round"/>`;
+      s += line([[286, 600], [316, 606]], 2.6, { fill: COAT_HI, op: 0.7 });
+    }
     // nón lá, tipped forward over the eyes
     // apex over the middle of the skull; the brim is counter-tilted so the body's lean leaves it only slightly tipped forward
     const hat = sm([[226, 20], [278, 66], [338, 118], [392, 176], [342, 188], [228, 192], [118, 178], [64, 150], [112, 114], [172, 64]]);
@@ -295,7 +301,7 @@
     s += lines(ribs, '#8a6a2a');
     s += `<path d="M226 20 L392 176 L342 188 L228 192Z" fill="#8a6a2a" opacity=".32"/>`;
     s += line([[64, 150], [228, 192], [392, 176]], 8, { s: 0.05, e: 0.05, min: 0.6 });
-    s += `<path d="M152 182 Q162 216 174 252" fill="none" stroke="#8a6a2a" stroke-width="3" opacity=".8"/>`;
+    s += `<path d="M258 190 Q262 236 244 262 Q226 278 196 276" fill="none" stroke="#8a6a2a" stroke-width="3.4" stroke-linecap="round" opacity=".9"/>`;
     s += `</g>`;
     if (run) s += `</g>`;
     return K.svg(560, 1040, s);
